@@ -15,12 +15,16 @@ public class InMemoryTimeEntryRepositoryTest {
     public void create() throws Exception {
         InMemoryTimeEntryRepository repo = new InMemoryTimeEntryRepository();
 
+        // make the call
         long projectId = 123L;
         long userId = 456L;
         TimeEntry createdTimeEntry = repo.create(new TimeEntry(projectId, userId, LocalDate.parse("2017-01-08"), 8));
 
+        // this is the expected return value
         long timeEntryId = 1L;
         TimeEntry expected = new TimeEntry(timeEntryId, projectId, userId, LocalDate.parse("2017-01-08"), 8);
+
+        // the test:
         assertThat(createdTimeEntry).isEqualTo(expected);
 
         TimeEntry readEntry = repo.find(createdTimeEntry.getId());
@@ -79,4 +83,6 @@ public class InMemoryTimeEntryRepositoryTest {
         repo.delete(created.getId());
         assertThat(repo.list()).isEmpty();
     }
+
+
 }

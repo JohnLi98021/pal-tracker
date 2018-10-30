@@ -101,6 +101,9 @@ public class TimeEntryControllerTest {
             .when(timeEntryRepository)
             .update(eq(timeEntryId), any(TimeEntry.class));
 
+        doReturn(expected)
+                .when(timeEntryRepository).find(timeEntryId);
+
         ResponseEntity response = controller.update(timeEntryId, expected);
 
         verify(timeEntryRepository).update(timeEntryId, expected);
