@@ -1,5 +1,5 @@
 ---
-applications:Hello from the review environment
+applications:
 - name: pal-tracker
   path: build/libs/pal-tracker.jar
   random-route: true
